@@ -1,0 +1,51 @@
+{
+  "defaultModel": {
+    "model": "opencode-go/kimi-k2.6",
+    "thinkingLevel": "medium"
+  },
+  "tiers": {
+    "SIMPLE": {
+      "model": "opencode-go/deepseek-v4-flash",
+      "thinkingLevel": "low"
+    },
+    "MEDIUM": {
+      "model": "opencode-go/kimi-k2.6",
+      "thinkingLevel": "medium"
+    },
+    "COMPLEX": {
+      "model": "opencode-go/glm-5.3",
+      "thinkingLevel": "high"
+    },
+    "REASONING": {
+      "model": "opencode-go/qwen3.7-max",
+      "thinkingLevel": "high"
+    }
+  },
+  "keywordTierRules": [
+    {
+      "keywords": [
+        "migration",
+        "schema change",
+        "security review",
+        "architecture",
+        "refactor across"
+      ],
+      "tier": "REASONING"
+    },
+    {
+      "keywords": ["typo", "rename", "formatting"],
+      "tier": "SIMPLE"
+    }
+  ],
+  "escalationKeywords": ["PI ESCALATE"],
+  "planMode": {
+    "minTier": "COMPLEX"
+  },
+  "sessionAffinity": {
+    "enabled": false,
+    "ttlSeconds": 3600
+  },
+  "questionReply": {
+    "enabled": true
+  }
+}

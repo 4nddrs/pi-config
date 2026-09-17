@@ -1,0 +1,27 @@
+# Secrets — never commit API keys
+agent/auth.json
+
+# Chat history
+agent/sessions/
+
+# Installed npm packages (Pi reinstalls from settings.json)
+agent/npm/
+
+# Regenerated caches
+agent/models-store.json
+agent/mcp-cache.json
+agent/gentle-ai/managed-assets.json
+
+# Local runtime
+agent/.atl/
+agent/tmp/
+agent/pi-pretty/
+agent/gentle-agents/
+agent/trust.json
+
+# Disabled / leftover local experiments
+agent/extensions/_pi-status-widget.disabled/
+
+# OS
+.DS_Store
+**/.DS_Store

@@ -1,0 +1,30 @@
+{
+  "lastChangelogVersion": "0.85.1",
+  "theme": "dark",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "kimi-k2.6",
+  "defaultThinkingLevel": "low",
+  "compaction": {
+    "enabled": true,
+    "reserveTokens": 16384,
+    "keepRecentTokens": 12000
+  },
+  "images": {
+    "autoResize": true
+  },
+  "retry": {
+    "enabled": true,
+    "maxRetries": 2
+  },
+  "packages": [
+    "npm:gentle-engram@0.1.12",
+    "npm:@coresofthq/pi-litellm-autorouter@1.2.1",
+    "npm:gentle-pi@3.2.0",
+    "npm:pi-mcp-adapter@2.34.0",
+    "extensions/pi-banner.ts",
+    "extensions/prefer-regular-tui.ts",
+    "append-last.ts"
+  ],
+  "tuiMode": "regular",
+  "quietStartup": true
+}
