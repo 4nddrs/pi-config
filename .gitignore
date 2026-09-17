@@ -25,3 +25,5 @@ agent/extensions/_pi-status-widget.disabled/
 # OS
 .DS_Store
 **/.DS_Store
+# Local Pi runtime state
+.atl/
