@@ -31,7 +31,7 @@ Usage: $(basename "$0") [--force] [--help]
   --force   Reinstall Engram and Pi even if the pinned versions are present
   --help    Show this help
 
-Does not copy Engram memory (~/.engram), chat sessions, or auth.json.
+Does not copy Engram memory (~/.engram) or chat sessions.
 EOF
 }
 
@@ -180,20 +180,6 @@ sync_config() {
   fi
 }
 
-ensure_auth_placeholder() {
-  local auth="${DEST}/agent/auth.json"
-  local example="${DEST}/agent/auth.json.example"
-  if [[ -f "$auth" ]]; then
-    chmod 600 "$auth" 2>/dev/null || true
-    log "keeping existing ${auth}"
-    return 0
-  fi
-  [[ -f "$example" ]] || die "missing ${example}"
-  cp "$example" "$auth"
-  chmod 600 "$auth"
-  warn "created ${auth} from the example — paste your OpenCode Go API key before starting Pi"
-}
-
 install_pi_cli() {
   prepend_path "$(npm prefix -g)/bin"
   prepend_path "${NPM_USER_PREFIX}/bin"
@@ -302,19 +288,15 @@ sync_gentle_ai() {
 }
 
 print_summary() {
-  local auth="${DEST}/agent/auth.json"
   cat <<EOF
 
 Pi setup is in ${DEST}
   pi:     $(command -v pi || echo missing)
   engram: $(command -v engram || echo missing)
 
+Next: run  pi
+Then /login and pick OpenCode Go.
 EOF
-  if [[ -f "$auth" ]] && grep -Fq 'YOUR_OPENCODE_GO_API_KEY' "$auth"; then
-    printf 'Next: edit %s and paste your OpenCode Go API key, then run: pi\n' "$auth"
-  else
-    printf 'Next: run  pi\n'
-  fi
 }
 
 log "OS=${OS_KEY} arch=${ARCH}"
@@ -325,7 +307,6 @@ else
 fi
 ensure_node
 sync_config
-ensure_auth_placeholder
 install_pi_cli
 install_engram
 install_pi_packages
